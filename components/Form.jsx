@@ -1,11 +1,12 @@
 "use client";
 
-import { FaceIcon, ImageIcon, SunIcon } from '@radix-ui/react-icons'
+import { FaceIcon, ImageIcon, SunIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { signIn } from "next-auth/react"
+import { signIn } from "next-auth/react";
+import Image from "next/image";
 
 /**
  * Form component for user registration and login.
@@ -52,7 +53,7 @@ const Form = ({ type }) => {
       const res = await signIn("credentials", {
         ...data,
         redirect: false,
-      })
+      });
 
       if (res.ok) {
         // If the login is successful, redirect to the chats page
@@ -69,8 +70,11 @@ const Form = ({ type }) => {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="w-1/2 max-w-md p-4 bg-white rounded shadow-md">
-        <img src="/assets/logo.png" alt="logo" className="mb-4 w-16 h-16 mx-auto" />
-
+        <Image
+          src="/path/to/image.jpg"
+          alt="logo"
+          className="mb-4 w-16 h-16 mx-auto"
+        />
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           {type === "register" && (
             <div>
@@ -139,7 +143,10 @@ const Form = ({ type }) => {
             )}
           </div>
 
-          <button className="py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded" type="submit">
+          <button
+            className="py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded"
+            type="submit"
+          >
             {type === "register" ? "Submit" : "Login"}
           </button>
         </form>
@@ -150,7 +157,9 @@ const Form = ({ type }) => {
           </Link>
         ) : (
           <Link href="/register" className="link">
-            <p className="text-center">Don't have an account? Register here</p>
+            <p className="text-center">
+              Don&apos;t have an account? Register here
+            </p>
           </Link>
         )}
       </div>
@@ -159,10 +168,6 @@ const Form = ({ type }) => {
 };
 
 export default Form;
-
-
-
-
 
 // Pseudocode:
 // Define a Form component that takes a type prop
