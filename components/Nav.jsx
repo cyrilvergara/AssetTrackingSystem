@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import {
-  Bell,
   CircleUser,
   Home,
   LineChart,
@@ -10,7 +9,6 @@ import {
   Package2,
   Search,
   ShoppingCart,
-  Sidebar,
   Users,
 } from "lucide-react";
 

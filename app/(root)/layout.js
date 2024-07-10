@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import Provider from "@components/Provider";
 import Nav from "@components/Nav";
-import SideBar from "@components/Sidebar";
+import SideNav from "@components/SideNav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} `}>
         <Provider>
           <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-            <SideBar />
+            <SideNav />
             <div className="flex flex-col">
               <Nav />
               {children}
