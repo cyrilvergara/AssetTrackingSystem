@@ -12,8 +12,14 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "@/components/ui/table";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
@@ -81,34 +87,38 @@ export default function Categories() {
     const updatedCategory = {
       _id: currentCategoryId,
       name: newCategoryName,
-      description: newCategoryDescription
+      description: newCategoryDescription,
     };
 
     if (!newCategoryName || !newCategoryDescription) {
       alert("Both name and description are required");
       return;
     }
-  
-    fetch('/api/categories', {
-      method: 'PUT',
+
+    fetch("/api/categories", {
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedCategory)
+      body: JSON.stringify(updatedCategory),
     })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        setCategories(categories.map(category => category._id === currentCategoryId ? data.data : category));
-        setNewCategoryName("");
-        setNewCategoryDescription("");
-        setIsDialogOpen(false);
-        setIsEditing(false);
-      } else {
-        console.error("Failed to update category:", data.error);
-      }
-    })
-    .catch(error => console.error("Failed to update category:", error));
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setCategories(
+            categories.map((category) =>
+              category._id === currentCategoryId ? data.data : category
+            )
+          );
+          setNewCategoryName("");
+          setNewCategoryDescription("");
+          setIsDialogOpen(false);
+          setIsEditing(false);
+        } else {
+          console.error("Failed to update category:", data.error);
+        }
+      })
+      .catch((error) => console.error("Failed to update category:", error));
   };
 
   return (
@@ -158,7 +168,6 @@ export default function Categories() {
           </DialogContent>
         </Dialog>
       </div>
-      <CardContent>
       <Table>
         <TableHeader>
           <TableRow>
@@ -189,7 +198,6 @@ export default function Categories() {
           )}
         </TableBody>
       </Table>
-    </CardContent>
     </main>
   );
 }
